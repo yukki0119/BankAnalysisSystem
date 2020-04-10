@@ -1,35 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="31f2045e-473a-4488-943f-313470efd738" name="Default Changelist" comment="" />
+    <list default="true" id="31f2045e-473a-4488-943f-313470efd738" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/functions.ipynb" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="Jupyter Notebook" />
+        <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
-  <component name="JupyterTrust" id="20202cb5-07e7-47f6-9946-35f4452c172a">
-    <option name="files">
-      <option value="functions.ipynb" />
-    </option>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="JupyterTrust" id="20202cb5-07e7-47f6-9946-35f4452c172a" />
   <component name="ProjectId" id="1aDxETJdR5TqFt0mKDdZz5qFnG0" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/templates" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -38,6 +60,9 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/data" />
       <recent name="$PROJECT_DIR$" />
@@ -84,7 +109,7 @@
       <updated>1586283853619</updated>
       <workItem from="1586283857072" duration="4991000" />
       <workItem from="1586370404999" duration="32079000" />
-      <workItem from="1586465831479" duration="6228000" />
+      <workItem from="1586465831479" duration="21271000" />
     </task>
     <servers />
   </component>
@@ -96,30 +121,38 @@
       <screen x="0" y="23" width="1440" height="819" />
     </state>
     <state x="458" y="185" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.23.1440.819@0.23.1440.819" timestamp="1586370546378" />
-    <state width="1398" height="210" key="GridCell.Tab.0.bottom" timestamp="1586466819522">
-      <screen x="0" y="23" width="1440" height="813" />
+    <state width="1398" height="208" key="GridCell.Tab.0.bottom" timestamp="1586489128865">
+      <screen x="0" y="23" width="1440" height="810" />
     </state>
+    <state width="1398" height="208" key="GridCell.Tab.0.bottom/0.23.1440.810@0.23.1440.810" timestamp="1586489128865" />
     <state width="1398" height="210" key="GridCell.Tab.0.bottom/0.23.1440.813@0.23.1440.813" timestamp="1586466819522" />
     <state width="1398" height="211" key="GridCell.Tab.0.bottom/0.23.1440.817@0.23.1440.817" timestamp="1586367429256" />
     <state width="1398" height="210" key="GridCell.Tab.0.bottom/0.23.1440.819@0.23.1440.819" timestamp="1586459460161" />
-    <state width="1398" height="210" key="GridCell.Tab.0.center" timestamp="1586466819521">
-      <screen x="0" y="23" width="1440" height="813" />
+    <state width="1398" height="208" key="GridCell.Tab.0.center" timestamp="1586489128864">
+      <screen x="0" y="23" width="1440" height="810" />
     </state>
+    <state width="1398" height="208" key="GridCell.Tab.0.center/0.23.1440.810@0.23.1440.810" timestamp="1586489128864" />
     <state width="1398" height="210" key="GridCell.Tab.0.center/0.23.1440.813@0.23.1440.813" timestamp="1586466819521" />
     <state width="1398" height="211" key="GridCell.Tab.0.center/0.23.1440.817@0.23.1440.817" timestamp="1586367429256" />
     <state width="1398" height="210" key="GridCell.Tab.0.center/0.23.1440.819@0.23.1440.819" timestamp="1586459460159" />
-    <state width="1398" height="210" key="GridCell.Tab.0.left" timestamp="1586466819520">
-      <screen x="0" y="23" width="1440" height="813" />
+    <state width="1398" height="208" key="GridCell.Tab.0.left" timestamp="1586489128862">
+      <screen x="0" y="23" width="1440" height="810" />
     </state>
+    <state width="1398" height="208" key="GridCell.Tab.0.left/0.23.1440.810@0.23.1440.810" timestamp="1586489128862" />
     <state width="1398" height="210" key="GridCell.Tab.0.left/0.23.1440.813@0.23.1440.813" timestamp="1586466819520" />
     <state width="1398" height="211" key="GridCell.Tab.0.left/0.23.1440.817@0.23.1440.817" timestamp="1586367429255" />
     <state width="1398" height="210" key="GridCell.Tab.0.left/0.23.1440.819@0.23.1440.819" timestamp="1586459460159" />
-    <state width="1398" height="210" key="GridCell.Tab.0.right" timestamp="1586466819522">
-      <screen x="0" y="23" width="1440" height="813" />
+    <state width="1398" height="208" key="GridCell.Tab.0.right" timestamp="1586489128865">
+      <screen x="0" y="23" width="1440" height="810" />
     </state>
+    <state width="1398" height="208" key="GridCell.Tab.0.right/0.23.1440.810@0.23.1440.810" timestamp="1586489128865" />
     <state width="1398" height="210" key="GridCell.Tab.0.right/0.23.1440.813@0.23.1440.813" timestamp="1586466819522" />
     <state width="1398" height="211" key="GridCell.Tab.0.right/0.23.1440.817@0.23.1440.817" timestamp="1586367429256" />
     <state width="1398" height="210" key="GridCell.Tab.0.right/0.23.1440.819@0.23.1440.819" timestamp="1586459460160" />
+    <state x="476" y="146" key="RollbackChangesDialog" timestamp="1586488952808">
+      <screen x="0" y="23" width="1440" height="810" />
+    </state>
+    <state x="476" y="146" key="RollbackChangesDialog/0.23.1440.810@0.23.1440.810" timestamp="1586488952808" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/flaskProj$functions.coverage" NAME="functions Coverage Results" MODIFIED="1586466004007" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
