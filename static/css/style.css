@@ -848,12 +848,16 @@ button.btn1:hover{
     height: 400px;
 }
 /*-- //map --*/
+.error {
+    padding: 2em 0 0 0;
+    text-align: center;
+}
 /*-- contact --*/
 .contact-form {
     text-align: center;
 }
 .agile-contact-grids {
-    margin: 4em 0 0 20em;
+    margin: 2em 0 0 21em;
 }
 .contact input[type="text"],.contact input[type="email"], .contact input[type="password"] {
     width: 100%;
