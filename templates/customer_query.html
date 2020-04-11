@@ -169,8 +169,8 @@ $(document).ready(function() {
 
 			</form>
 
-			</div>
-			<div class="col-md-7 contact-form">
+
+			<div>
 				{% if trans_count %}
 					<table>
 						<tr>
@@ -183,6 +183,30 @@ $(document).ready(function() {
 						</tr>
 					</table>
 				{% endif %}
+
+				{% if trans_info %}
+					<table>
+						<tr>
+							<th>Account_ID</th>
+							<th>Transaction_ID</th>
+							<th>Amount</th>
+							<th>Balance</th>
+							<th>Type</th>
+							<th>Date</th>
+						</tr>
+						{% for data in trans_info %}
+						<tr>
+							<td> {{ account }} </td>
+							<td> {{ data['t.trans_id'] }}</td>
+							<td> {{ data['t.amount'] }}</td>
+							<td> {{ data['t.balance'] }}</td>
+							<td> {{ data['t.type'] }}</td>
+							<td> {{ data['t.date'] }}</td>
+						</tr>
+						{% endfor %}
+					</table>
+				{% endif %}
+			</div>
 			</div>
 		</div>
 	</div>
