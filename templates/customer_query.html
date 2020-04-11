@@ -77,7 +77,7 @@ $(document).ready(function() {
 					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="{{ url_for('index') }}">Home</a></li>
-							<li><a href="{{ url_for('login') }}" class="active">Transaction</a></li>
+							<li><a href="{{ url_for('customer_query') }}" class="active">Transaction</a></li>
                             <li><a href="{{ url_for('logout') }}">Logout</a></li>
 						</ul>
 
@@ -121,38 +121,45 @@ $(document).ready(function() {
 <!--				<div class="clearfix"> </div>-->
 <!--			</div>-->
 			<div class="agile-contact-grids">
-			<form action="/" method="get">
+			<form action="/customer/search" method="post">
 				<div class="col-md-7 contact-form">
-  				<select>
-					<option value="0">Select Year</option>
-					<option value="2">1997</option>
-					<option value="3">1998</option>
-					<option value="4">Remote</option>
-					<option value="5">Office Job</option>
+  				<select name="year" required>
+					<option value="">Select Year</option>
+					<option value="1993">1993</option>
+					<option value="1994">1994</option>
+					<option value="1995">1995</option>
+					<option value="1996">1996</option>
+					<option value="1997">1997</option>
+					<option value="1998">1998</option>
 				</select>
 
-				<select>
-					<option selected disabled>Select Month</option>
-					<option value="2">1</option>
-					<option value="3">2</option>
-					<option value="4">3</option>
-					<option value="5">4</option>
+				<select name="month" required>
+					<option value="">Select Month</option>
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>
+					<option value="4">4</option>
+					<option value="5">5</option>
+					<option value="6">6</option>
+					<option value="7">7</option>
+					<option value="8">8</option>
+					<option value="9">9</option>
+					<option value="10">10</option>
+					<option value="11">11</option>
+					<option value="12">12</option>
 				</select>
 				</div>
 				<div class="col-md-7 contact-form">
-				<select>
-					<option value="1">Search Type</option>
-					<option value="2">Number of Transactions</option>
-					<option value="3">Transactions Information</option>
-<!--					<option value="4">3</option>-->
-<!--					<option value="5">4</option>-->
+				<select name="searchType" required>
+					<option value="">Search Type</option>
+					<option value="1">Number of Transactions</option>
+					<option value="2">Transactions Information</option>
 				</select>
-				<select>
-					<option value="1">Database</option>
+				<select name="db" required>
+					<option value="">Database</option>
+					<option value="1">MongoDB</option>
 					<option value="2">Neo4j</option>
 					<option value="3">MySQL</option>
-<!--					<option value="4">3</option>-->
-<!--					<option value="5">4</option>-->
 				</select>
 				</div>
 <!--				<input type="text" placeholder="Search Keyword" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'" required>-->
