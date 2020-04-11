@@ -1,16 +1,17 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
-
+import neo4jQuery as neo4jDB
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
-client_id = 2
+account_id = 9307
 
 # app._static_folder = './static'
+
 
 @app.route('/')
 def index():
     if isLoggedIn():
         print(session['logged_in'])
-            # return redirect(url_for('userIndex'))
+        return redirect(url_for('userIndex'))
     return render_template('index.html')
 
 
@@ -26,7 +27,7 @@ def login():
         print('email is: ',email)
         if email == 'customer@bank.com' and passwd == '123456':
             session['user_type'] = 1#1 for customer
-            session['client_id'] = client_id#default client_id
+            session['account_id'] = account_id#default client_id
             session['logged_in'] = True
             print(session)
             return redirect(url_for('userIndex'))
@@ -58,6 +59,7 @@ def logout():
         session['logged_in'] = None
         session['user_type'] = None
         session['client_id'] = None
+        session['account_id'] = None
     return redirect(url_for('index'))
 
 
@@ -67,17 +69,32 @@ def query():
         if session['user_type'] == 1: # stand for customer
             return redirect(url_for('customer_query'))
         if session['user_type'] == 0: # stand for admin
-            return redirect(url_for('admin_query'))
+            return redirect(url_for('admin'))
 
 
-@app.route('/customer_query')
+@app.route('/customer')
 def customer_query():
     return render_template('customer_query.html')
 
 
-@app.route('/admin_query')
+@app.route('/admin')
 def admin_query():
     return render_template('admin_query.html')
+
+
+@app.route('/customer/search', methods=['POST'])
+def customer_search():
+    year = int(request.form.get('year'))
+    month = int(request.form.get('month'))
+    searchType = int(request.form.get('searchType'))
+    db = int(request.form.get('db'))
+    account = str(session["account_id"])
+    print(db, year, month, searchType, account)
+    if db == 2: # 1:mongodb, 2:neo4j, 3:mysql
+        print('db is 2')
+        res = neo4jDB.customer_query(year, month, searchType, account)
+        print('res is :',res)
+    return render_template('customer_query.html')
 
 
 def isLoggedIn():
@@ -90,3 +107,5 @@ def isLoggedIn():
     print(logged_in)
     session['logged_in'] = logged_in
     return logged_in
+
+
