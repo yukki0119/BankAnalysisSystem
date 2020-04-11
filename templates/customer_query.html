@@ -163,11 +163,26 @@ $(document).ready(function() {
 				</select>
 				</div>
 <!--				<input type="text" placeholder="Search Keyword" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Search Keyword'" required>-->
-<!--				<button type="submit" class="template-btn">Search</button>-->
+				<div class="col-md-7 contact-form"><button type="submit" class="btn1">Search</button></div>
+
 
 
 			</form>
 
+			</div>
+			<div class="col-md-7 contact-form">
+				{% if trans_count %}
+					<table>
+						<tr>
+							<th>Account_ID</th>
+							<th>Number of Transactions</th>
+						</tr>
+						<tr>
+							<td> {{ account }} </td>
+							<td> {{ trans_count }}</td>
+						</tr>
+					</table>
+				{% endif %}
 			</div>
 		</div>
 	</div>
