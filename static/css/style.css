@@ -882,8 +882,15 @@ button.btn1:hover{
     padding: .7em 1em;
     margin-bottom: 1.5em;
     border: solid 1px #e4e4e4;
-    -webkit-appearance: none;
+
     display: inline-block;
+}
+.contact text-oneLine{
+    display:block;            /*内联对象需加*/
+            word-break:keep-all;      /* 不换行 */
+            white-space:nowrap;       /* 不换行 */
+            text-overflow:ellipsis;
+            float:left;
 }
 .contact textarea {
     resize: none;
@@ -895,7 +902,7 @@ button.btn1:hover{
     padding: .6em .8em;
     border: solid 1px #e4e4e4;
     min-height: 12em;
-    -webkit-appearance: none;
+
 }
 .contact select {
     width: 100%;
@@ -907,8 +914,8 @@ button.btn1:hover{
     padding: .7em 1em;
     margin-bottom: 1.5em;
     border: solid 1.5px #e4e4e4;
-    -webkit-appearance: none;
-    display: inline-block;
+
+
 
     /*!*-webkit-appearance: none;*!*/
     /*-moz-appearance: none;*/
