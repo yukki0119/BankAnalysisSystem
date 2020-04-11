@@ -93,8 +93,9 @@ def customer_search():
     if db == 2: # 1:mongodb, 2:neo4j, 3:mysql
         print('db is 2')
         res = neo4jDB.customer_query(year, month, searchType, account)
-        print('res is :',res)
-    return render_template('customer_query.html')
+        print ('res is :', res)
+        if searchType == 1: # num of trans
+            return render_template('customer_query.html', account = account, trans_count = res)
 
 
 def isLoggedIn():
