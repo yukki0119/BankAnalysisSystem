@@ -1717,8 +1717,9 @@ button.btn1:hover{
 table{
     text-align: center;
     border-collapse: collapse;
-    width: 100%;
+    width: 60%;
     padding-top: 2em;
+    padding-bottom: 2em;
 }
 
 td, th {
@@ -1733,7 +1734,11 @@ tr:hover {background-color: #ddd;}
 th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
+  text-align: center;
   background-color: #FF9800;
   color: white;
+}
+
+.table{
+    text-align: center;
 }
