@@ -251,11 +251,12 @@ $(document).ready(function() {
 			<div class="agile-contact-grids">
 			<form action="/admin/search" method="post">
                 <div class="col-md-7 contact-form">
-                  <h3>4.Query the number of transactions and custumers by different district</h3>
+                  <h3>4.Query the number of transactions by different region</h3>
 				<select>
-					<option selected disabled>Name of District</option>
-					<option value="1">pitt</option>
-					<option value="2">nyc</option>
+					<option value="">Region</option>
+					{% for data in region %}
+					<option value={{data['region']}}>{{data['region']}}</option>
+					{% endfor %}
 				</select>
 				<select>
 					<option selected disabled>Database</option>

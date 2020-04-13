@@ -35,9 +35,10 @@ def search_trans_info(tx, month, year, account_id):
     if month == 12:
         month_larger = 1
         year_larger = year + 1
-    result = tx.run ("Match (a:account)-[r:made]->(t:trans) where t.date >= date({year:{year}, month:{month}}) and "
-                     "t.date < date({year:{year_larger}, month:{month_larger}}) and a.account_id={acc} return t.trans_id, t.amount, t.balance, t.type, t.date"
-                     , year=year, month=month, year_larger=year_larger, month_larger=month_larger, acc=account_id)
+    result = tx.run("Match (a:account)-[r:made]->(t:trans) where t.date >= date({year:{year}, month:{month}}) and "
+                    "t.date < date({year:{year_larger}, month:{month_larger}}) and a.account_id={acc} return "
+                    "t.trans_id as trans_id, t.amount as amount, t.balance as balance, t.type as type, t.date as date "
+                    , year=year, month=month, year_larger=year_larger, month_larger=month_larger, acc=account_id)
     data = result.data()
     return data
 
@@ -95,6 +96,7 @@ def query3(tx, req):
     print(res)
     return res
 
+
 def get_district():
     with driver.session () as session:
         return session.read_transaction (get_district_helper)
@@ -102,4 +104,14 @@ def get_district():
 
 def get_district_helper(tx):
     result = tx.run ("Match (d:district) return d.district_id as id, d.district_name as name")
-    return result.data ()
+    return result.data()
+
+
+def get_region():
+    with driver.session () as session:
+        return session.read_transaction(get_region_helper)
+
+
+def get_region_helper(tx):
+    result = tx.run("Match (r:region) return r.region as region")
+    return result.data()

@@ -80,8 +80,9 @@ def customer_query():
 @app.route('/admin')
 def admin_query():
     district = neo4jDB.get_district()
+    region = neo4jDB.get_region()
     # print(district)
-    return render_template('admin_query.html', district=district)
+    return render_template('admin_query.html', district=district, region=region)
 
 
 @app.route('/customer/search', methods=['POST'])
@@ -111,12 +112,13 @@ def admin_search():
     db = int(req.get('db'))
     query_id = int(req.get('queryID'))
     district = neo4jDB.get_district()
+    region = neo4jDB.get_region ()
     print(db)
     if db == 1: # neo4j
         res = neo4jDB.admin_query(req)
         print('res in app.py', res)
-        return render_template('admin_query.html', query_id=query_id, req=req, res=res, district=district)
-    return render_template('admin_query.html', district=district)
+        return render_template('admin_query.html', query_id=query_id, req=req, res=res, district=district, region=region)
+    return render_template('admin_query.html', district=district, region=region)
     # year = int(request.form.get('year'))
     # month = int(request.form.get('month'))
     # searchType = int(request.form.get('searchType'))

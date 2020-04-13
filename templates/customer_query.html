@@ -198,11 +198,11 @@ $(document).ready(function() {
 						{% for data in trans_info %}
 						<tr>
 							<td> {{ account }} </td>
-							<td> {{ data['t.trans_id'] }}</td>
-							<td> {{ data['t.amount'] }}</td>
-							<td> {{ data['t.balance'] }}</td>
-							<td> {{ data['t.type'] }}</td>
-							<td> {{ data['t.date'] }}</td>
+							<td> {{ data['trans_id'] }}</td>
+							<td> {{ data['amount'] }}</td>
+							<td> {{ data['balance'] }}</td>
+							<td> {{ data['type'] }}</td>
+							<td> {{ data['date'] }}</td>
 						</tr>
 						{% endfor %}
 					</table>

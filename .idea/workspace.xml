@@ -4,11 +4,9 @@
     <list default="true" id="31f2045e-473a-4488-943f-313470efd738" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/neo4jQuery.py" beforeDir="false" afterPath="$PROJECT_DIR$/neo4jQuery.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/admin_query.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/admin_query.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/transData/account.csv" beforeDir="false" afterPath="$PROJECT_DIR$/transData/account.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/customer_query.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/customer_query.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,7 +110,7 @@
       <updated>1586283853619</updated>
       <workItem from="1586283857072" duration="4991000" />
       <workItem from="1586370404999" duration="32079000" />
-      <workItem from="1586465831479" duration="78523000" />
+      <workItem from="1586465831479" duration="81932000" />
     </task>
     <servers />
   </component>
