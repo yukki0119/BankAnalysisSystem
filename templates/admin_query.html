@@ -216,7 +216,7 @@ $(document).ready(function() {
 			<div class="agile-contact-grids">
 			<form action="/admin/search" method="post">
 			<div class="col-md-7 contact-form">
-				<h3>3.Query the number of customers by different age_range and loan ability</h3>
+				<h3>3.Query the number of customers by different age range and loan ability</h3>
 				<select name="age_range" required>
 					<option value="">Age Range</option>
 					<option value="1">0-25</option>
@@ -372,25 +372,41 @@ $(document).ready(function() {
 			<div class="agile-contact-grids">
 			<form action="/admin/search" method="post">
 				<div class="col-md-7 contact-form">
-					<h3>6.Show the information according to different customer</h3>
-				<select>
-					<option selected disabled>Loan Ability</option>
-					<option value="1">A</option>
-					<option value="2">B</option>
-                    <option value="3">C</option>
-                    <option value="4">D</option>
+					<h3>6.Query the number of customers by different region</h3>
+				<select name="region">
+					<option value="">Region</option>
+					{% for data in region %}
+					<option value="{{data['region']}}">{{data['region']}}</option>
+					{% endfor %}
 				</select>
-					<select>
-					<option selected disabled>Database</option>
+				<select name="db">
+					<option value="">Database</option>
 					<option value="1">Neo4j</option>
 					<option value="2">MySQL</option>
 					<option value="3">MongoDB</option>
-                    <input type="submit" value="Search">
 				</select>
+				<input type="submit" value="Search">
+				<input type="hidden" name="queryID" value="6">
 				</div>
 			</form>
 			</div>
 		</div>
+</div>
+<div class="table">
+	{% if query_id == 6 %}
+	<table align="center">
+		<tr>
+			<th>Region</th>
+			<th>Number of Customers</th>
+		</tr>
+		{% for data in res %}
+		<tr>
+			<td> {{ req['region'] }} </td>
+			<td> {{ data['count'] }}</td>
+		</tr>
+		{% endfor %}
+	</table>
+	{% endif %}
 </div>
 	<!-- //contact -->
 	<!-- footer -->

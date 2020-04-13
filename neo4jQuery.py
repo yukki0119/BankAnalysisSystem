@@ -64,6 +64,9 @@ def admin_query(req):
     if query_id == 5:
         with driver.session () as session:
             return session.read_transaction (query5, req)
+    if query_id == 6:
+        with driver.session () as session:
+            return session.read_transaction (query6, req)
 
 
 # Query the number of transactions by district and time: MATCH (t:trans), (a:account)-[:made]->(t:trans),
@@ -143,6 +146,16 @@ def query5(tx, req):
     gender = req['gender']
     result = tx.run("MATCH (n:client)- [:BelongTo] -> (d:district) where n.gender={gender} and d.district_id={dist} "
                     "RETURN COUNT(n) as count, d.district_name as dist", gender=gender, dist=dist_id)
+    res = result.data()
+    print(res)
+    return res
+
+
+# 6.Query the number of customers by different region
+def query6(tx, req):
+    region = req['region']
+    result = tx.run("MATCH (c:client)- [:BelongTo] -> (d:district), (d) - [:BelongTo] -> (r: region) where r.region={"
+                    "region} return count(c) as count", region=region)
     res = result.data()
     print(res)
     return res
