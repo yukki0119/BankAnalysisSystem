@@ -103,45 +103,30 @@ $(document).ready(function() {
 			</div>
 			<div>
 			{% if error %}
-    			<p class=error><strong>Error:</strong> {{ error }}
+				<p class=error><strong>Error:</strong> {{ error }}</p>
   			{% endif %}
 			</div>
-<!--			<div class="agile-contact-grids">-->
-<!--				<div class="col-md-7 contact-form">-->
-<!--					<form action="/login" method="post">-->
-<!--						<input type="email" class="email" name="Email" placeholder="Email" required="true">-->
-<!--                        <input type="password" class="password" name="Password" placeholder="Password" required="true">-->
-<!--						<input type="submit" value="Login">-->
-<!--					</form>-->
-<!--				</div>-->
-<!--				<div>-->
-
-<!--				</div>-->
-
-<!--				<div class="clearfix"> </div>-->
-<!--			</div>-->
-
 			<div class="agile-contact-grids">
-			<form action="/" method="get">
+			<form action="/admin/search" method="post">
 				<div class="col-md-7 contact-form">
              <h3>1.Query the number of transactions by district and time</h3>
-             <select>
-					<option selected disabled>Name of District</option>
-					<option value="1">pitt</option>
-					<option value="2">nyc</option>
-
+             	<select name="dist" required>
+					<option value="">Name of District</option>
+					{% for data in district %}
+					<option value={{data['id']}}>{{data['name']}}</option>
+					{% endfor %}
 				</select>
-
-                    <select>
-					<option selected disabled>Select Year</option>
-					<option value="1">1993</option>
-					<option value="2">1994</option>
-					<option value="3">1995</option>
-					<option value="4">1996</option>
+				<select name="year" required>
+					<option value="">Select Year</option>
+					<option value="1993">1993</option>
+					<option value="1994">1994</option>
+					<option value="1995">1995</option>
+					<option value="1996">1996</option>
+					<option value="1997">1997</option>
+					<option value="1998">1998</option>
 				</select>
-
-				<select>
-					<option selected disabled>Select Month</option>
+				<select name="month" required>
+					<option value="">Select Month</option>
 					<option value="1">1</option>
 					<option value="2">2</option>
 					<option value="3">3</option>
@@ -154,109 +139,167 @@ $(document).ready(function() {
                     <option value="10">10</option>
                     <option value="11">11</option>
                     <option value="12">12</option>
-
-
 				</select>
-
-					<select>
-					<option selected disabled>Database</option>
+				<select name="db" required>
+					<option value="">Database</option>
 					<option value="1">Neo4j</option>
 					<option value="2">MySQL</option>
 					<option value="3">MongoDB</option>
-
-<!--					<option value="4">3</option>-->
-					</select>
+				</select>
                     <input type="submit" value="Search">
+					<input type="hidden" name="queryID" value="1">
 				</div>
-
-
+			</form>
+			</div>
+		</div>
+	</div>
+<div class="table">
+				{% if query_id == 1 %}
+					<table align="center">
+						<tr>
+							<th>District Name</th>
+							<th>Time</th>
+							<th>Number of Transactions</th>
+						</tr>
+						{% for data in res %}
+						<tr>
+							<td> {{ data['dist'] }} </td>
+							<td> {{ req['year'] }}-{{req['month']}} </td>
+							<td> {{ data['count'] }}</td>
+						</tr>
+						{% endfor %}
+					</table>
+				{% endif %}
+			</div>
+<div class="contact">
+		<div class="container">
+			<div class="agile-contact-grids">
+			<form action="/admin/search" method="post">
 				<div class="col-md-7 contact-form">
                     <h3>2.Query the number of transactions by account_id</h3>
-
-					<input type="text" title="xxxxx" aria-valuetext="input your account_id" value="Input your account_id">
-
-                    <select>
-					<option selected disabled>Database</option>
+					<div>
+						<label for="acc">account_id</label>
+						<input type="text" id="acc" name="account_id" placeholder="input your account_id" required>
+					</div>
+                    <select name="db" required>
+					<option value="">Database</option>
 					<option value="1">Neo4j</option>
 					<option value="2">MySQL</option>
 					<option value="3">MongoDB</option>
-						<input type="submit" value="Search">
-				</select>
-
+					</select>
+					<input type="submit" value="Search">
+					<input type="hidden" name="queryID" value="2">
 				</div>
+			</form>
+			</div>
+		</div>
+</div>
+			<div class="table">
+				{% if query_id == 2 %}
+					<table align="center">
+						<tr>
+							<th>Account_ID</th>
+							<th>Number of Transactions</th>
+						</tr>
+						{% for data in res %}
+						<tr>
+							<td> {{ req['account_id'] }} </td>
+							<td> {{ data['count(t)'] }}</td>
+						</tr>
+						{% endfor %}
+					</table>
+				{% endif %}
+			</div>
 
-
-                <div class="col-md-7 contact-form">
-                    <h3>3.Query the number of customers by different age_range and loan ability</h3>
-				<select>
-					<option selected disabled>Age_Range</option>
+<div class="contact">
+		<div class="container">
+			<div class="agile-contact-grids">
+			<form action="/admin/search" method="post">
+			<div class="col-md-7 contact-form">
+				<h3>3.Query the number of customers by different age_range and loan ability</h3>
+				<select name="age_range" required>
+					<option value="">Age_Range</option>
 					<option value="1">0-25</option>
 					<option value="2">26-50</option>
                     <option value="3">51-75</option>
 					<option value="4">76+</option>
-
+					<option value="all">Select ALL</option>
 				</select>
-
-				<select>
-					<option selected disabled>Loan Ability</option>
-					<option value="1">A</option>
-					<option value="2">B</option>
-                    <option value="3">C</option>
-                    <option value="4">D</option>
-
+				<select name="loan" required>
+					<option value="">Loan Ability</option>
+					<option value="A">A</option>
+					<option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+					<option value="all">Select ALL</option>
 				</select>
-					<select>
-					<option selected disabled>Database</option>
+				<select name="db" required>
+					<option value="">Database</option>
 					<option value="1">Neo4j</option>
 					<option value="2">MySQL</option>
 					<option value="3">MongoDB</option>
-                    <input type="submit" value="Search">
-<!--					<option value="4">3</option>-->
-<!--					<option value="5">4</option>-->
 				</select>
-				</div>
-
-
+				<input type="submit" value="Search">
+				<input type="hidden" name="queryID" value="3">
+			</div>
+			</form>
+			</div>
+		</div>
+</div>
+<div class="contact">
+		<div class="container">
+			<div class="agile-contact-grids">
+			<form action="/admin/search" method="post">
                 <div class="col-md-7 contact-form">
                   <h3>4.Query the number of transactions and custumers by different district</h3>
 				<select>
 					<option selected disabled>Name of District</option>
 					<option value="1">pitt</option>
 					<option value="2">nyc</option>
-
 				</select>
-
 				<select>
 					<option selected disabled>Database</option>
 					<option value="1">Neo4j</option>
 					<option value="2">MySQL</option>
 					<option value="3">MongoDB</option>
-
-                    <input type="submit" value="Search">
-
 				</select>
+				<input type="submit" value="Search">
+				<input type="hidden" name="queryID" value="4">
 				</div>
+			</form>
+			</div>
+		</div>
+</div>
 
+<div class="contact">
+		<div class="container">
+			<div class="agile-contact-grids">
+			<form action="/admin/search" method="post">
                 <div class="col-md-7 contact-form">
 					<h3>5.Query the number of female and male by different district</h3>
 				<select>
 					<option selected disabled>Name of District</option>
 					<option value="1">pitt</option>
 					<option value="2">nyc</option>
-
 				</select>
 					<select>
 					<option selected disabled>Database</option>
 					<option value="1">Neo4j</option>
 					<option value="2">MySQL</option>
 					<option value="3">MongoDB</option>
-                    <input type="submit" value="Search">
-<!--					<option value="4">3</option>-->
-<!--					<option value="5">4</option>-->
 				</select>
-
+				<input type="submit" value="Search">
+				<input type="hidden" name="queryID" value="5">
 				</div>
+			</form>
+			</div>
+		</div>
+</div>
 
+<div class="contact">
+		<div class="container">
+			<div class="agile-contact-grids">
+			<form action="/admin/search" method="post">
 				<div class="col-md-7 contact-form">
 					<h3>6.Show the information according to different customer</h3>
 				<select>
@@ -265,7 +308,6 @@ $(document).ready(function() {
 					<option value="2">B</option>
                     <option value="3">C</option>
                     <option value="4">D</option>
-
 				</select>
 					<select>
 					<option selected disabled>Database</option>
@@ -273,16 +315,12 @@ $(document).ready(function() {
 					<option value="2">MySQL</option>
 					<option value="3">MongoDB</option>
                     <input type="submit" value="Search">
-<!--					<option value="4">3</option>-->
-<!--					<option value="5">4</option>-->
 				</select>
-
-				</div>>
+				</div>
 			</form>
-
 			</div>
 		</div>
-	</div>
+</div>
 	<!-- //contact -->
 	<!-- footer -->
 	<div class="jarallax footer">

@@ -335,7 +335,7 @@ body{
 /*-- //banner --*/
 /*-- welcome --*/
 .welcome,.about,.services,.blog,.news,.feedback,.wthree-subscribe,.contact, .login{
-	padding:4em 0;
+	padding:1em 0;
 }
 .w3-welcome-heading h2,.w3-welcome-heading h3{
     color: #FF9800;
@@ -1741,4 +1741,8 @@ th {
 
 .table{
     text-align: center;
+}
+#table{
+    text-align: center;
+
 }

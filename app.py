@@ -1,10 +1,10 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 import neo4jQuery as neo4jDB
+
+
 app = Flask(__name__)
 app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 account_id = 9307
-
-# app._static_folder = './static'
 
 
 @app.route('/')
@@ -69,7 +69,7 @@ def query():
         if session['user_type'] == 1: # stand for customer
             return redirect(url_for('customer_query'))
         if session['user_type'] == 0: # stand for admin
-            return redirect(url_for('admin'))
+            return redirect(url_for('admin_query'))
 
 
 @app.route('/customer')
@@ -79,7 +79,9 @@ def customer_query():
 
 @app.route('/admin')
 def admin_query():
-    return render_template('admin_query.html')
+    district = neo4jDB.get_district()
+    # print(district)
+    return render_template('admin_query.html', district=district)
 
 
 @app.route('/customer/search', methods=['POST'])
@@ -93,11 +95,42 @@ def customer_search():
     if db == 2: # 1:mongodb, 2:neo4j, 3:mysql
         print('db is 2')
         res = neo4jDB.customer_query(year, month, searchType, account)
-        print ('res is :', res)
+        print('res is :', res)
         if searchType == 1: # num of trans
             return render_template('customer_query.html', account=account, trans_count=res)
         if searchType == 2:
             return render_template('customer_query.html', account=account, trans_info=res)
+    # if db == 3:
+    #     res = mysqlQuery.customer_query(year, month, searchType, account)
+    #     if searchType == 1:
+
+
+@app.route('/admin/search', methods=['POST'])
+def admin_search():
+    req = request.form
+    db = int(req.get('db'))
+    query_id = int(req.get('queryID'))
+    district = neo4jDB.get_district()
+    print(db)
+    if db == 1: # neo4j
+        res = neo4jDB.admin_query(req)
+        print('res in app.py', res)
+        return render_template('admin_query.html', query_id=query_id, req=req, res=res, district=district)
+    return render_template('admin_query.html', district=district)
+    # year = int(request.form.get('year'))
+    # month = int(request.form.get('month'))
+    # searchType = int(request.form.get('searchType'))
+    # db = int(request.form.get('db'))
+    # account = str(session["account_id"])
+    # print(db, year, month, searchType, account)
+    # if db == 2: # 1:mongodb, 2:neo4j, 3:mysql
+    #     print('db is 2')
+    #     res = neo4jDB.customer_query(year, month, searchType, account)
+    #     print ('res is :', res)
+    #     if searchType == 1: # num of trans
+    #         return render_template('customer_query.html', account=account, trans_count=res)
+    #     if searchType == 2:
+    #         return render_template('customer_query.html', account=account, trans_info=res)
     # if db == 3:
     #     res = mysqlQuery.customer_query(year, month, searchType, account)
     #     if searchType == 1:
