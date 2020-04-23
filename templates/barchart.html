@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>{{ title }}</title>
+<link href="{{ url_for('static', filename='css/bootstrap.css') }}" rel="stylesheet" type="text/css" media="all" />
+<!--// bootstrap-css -->
+<!-- css -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css" media="all" />
+<!--// css -->
+<link rel="stylesheet" href="{{ url_for('static', filename= 'css/owl.carousel.css') }}" type="text/css" media="all">
+<link href="{{ url_for('static', filename= 'css/owl.theme.css') }}" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename= 'css/cm-overlay.css') }}" />
+<!-- font-awesome icons -->
+<link href="{{ url_for('static', filename= 'css/font-awesome.css') }}" rel="stylesheet">
+<!-- //font-awesome icons -->
+<!-- font -->
+<link href="http://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+<!-- //font -->
+<script src="{{ url_for('static', filename= 'js/jquery-1.11.1.min.js') }}"></script>
+<script src="{{ url_for('static', filename= 'js/bootstrap.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+</head>
+
+<body>
+
+<div class="banner">
+		<!--header-->
+		<div class="header">
+			<div class="container">
+				<nav class="navbar navbar-default">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<h1><a  href="{{ url_for('index') }}">ADB <span>Banking</span></a></h1>
+					</div>
+					<!--navbar-header-->
+					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+						<ul class="nav navbar-nav navbar-right">
+							<li><a href="{{ url_for('index') }}">Home</a></li>
+							<li><a href="{{ url_for('query') }}">Transaction</a></li>
+                            <li><a href="{{ url_for('show_bar') }}" class="active">Visualization</a></li>
+                            <li><a href="{{ url_for('logout') }}">Logout</a></li>
+						</ul>
+
+<!--						<div class="clearfix"> </div>-->
+					</div>
+				</nav>
+			</div>
+		</div>
+	</div>
+
+
+    <div class="contact">
+        <div class="container">
+        <div class="w3-welcome-heading">
+		<h3>Visualization</h3>
+        </div>
+<!--        <div class="agile-contact-grids">-->
+<!--            <div class="col-md-7 contact-form">-->
+    <h3 style="text-align: center">Customers of different age range and loan ability</h3>
+    <canvas id="chart" width="800" height="300"></canvas>
+<!--        </div>-->
+<!--        </div>-->
+        </div>
+    </div>
+
+ <script type="text/javascript">
+      // bar chart data
+      // var pass_para = '{{para}}'
+      var loop = [{% for data in para %} '{{data}}', {% endfor %}]
+      // var values_range_1 = [{% for data in values_range_ %} '{{data}}', {% endfor %}]
+      // console.log('range1',values_range_1)
+      var barData = {
+          labels : loop,
+        datasets : [
+            {
+          label: "0-25", //stand for loan status 'ABCD'
+          backgroundColor: "#060809",
+          data: [{% for data in values_range_1 %} '{{data}}', {% endfor %}]
+        }, {
+          label: "26-50",
+          backgroundColor: "#EE682A",
+          data: [{% for data in values_range_2 %} '{{data}}', {% endfor %}]
+        },{
+          label: "51+",
+          backgroundColor: "#434343",
+          data: [{% for data in values_range_3 %} '{{data}}', {% endfor %}]}
+        // },{
+        //   label: "D",
+        //   backgroundColor: "#C5CAE9",
+        //   data: [{% for data in values_range_4 %} '{{data}}', {% endfor %}]
+        // }
+        ]
+      };
+
+     // get bar chart canvas
+     var mychart = document.getElementById("chart").getContext("2d");
+      // steps = 10
+      // max = 17000
+
+     // draw bar chart
+     // new Chart(mychart).Bar(barData, {
+     //   scaleOverride: true,
+     //   scaleSteps: steps,
+     //   scaleStepWidth: Math.ceil(max / steps),
+     //   scaleStartValue: 0,
+     //   scaleShowVerticalLines: true,
+     //   scaleShowGridLines : true,
+     //   barShowStroke : true,
+     //   scaleShowLabels: true
+     //   }
+     // );
+
+    new Chart(document.getElementById("chart"),{
+    type: 'bar',
+    data: barData,
+    options: {
+      title: {
+        display: true,
+        text: 'loan ability of customers with different age ranges',
+        // scaleStepWidth: Math.ceil(17000 /100),
+      }
+    }
+});
+    </script>
+</body>
+</html>

@@ -78,6 +78,7 @@ $(document).ready(function() {
 						<ul class="nav navbar-nav navbar-right">
 							<li><a href="{{ url_for('index') }}">Home</a></li>
 							<li><a href="{{ url_for('login') }}" class="active">Transaction</a></li>
+							<li><a href="{{ url_for('show_bar') }}">Visualization</a></li>
                             <li><a href="{{ url_for('logout') }}">Logout</a></li>
 						</ul>
 
@@ -86,12 +87,6 @@ $(document).ready(function() {
 				</nav>
 			</div>
 		</div>
-
-<!--		<div class="bounce animated">-->
-<!--			<a href="#welcome" class="scroll">-->
-<!--				<div class="mouse"></div>-->
-<!--			</a>-->
-<!--		</div>-->
 	</div>
 
 	<!-- //map -->
@@ -110,7 +105,7 @@ $(document).ready(function() {
 			<form action="/admin/search" method="post">
 				<div class="col-md-7 contact-form">
              <h3>1.Query the number of transactions by district and time</h3>
-             	<select name="dist" required>
+             	<select name="dist" required class="dist">
 					<option value="">Name of District</option>
 					{% for data in district %}
 					<option value={{data['id']}}>{{data['name']}}</option>
@@ -447,6 +442,14 @@ $(document).ready(function() {
 
 			});
 	</script>
+
+<script type="text/javascript">
+	var sel = document.getElementsByClassName('dist');
+	var opt = sel.options[sel.selectedIndex];
+	function getSelectedOption(sel) {
+
+	}
+</script>
 <!-- //here ends scrolling icon -->
 <script src="{{ url_for('static', filename='js/owl.carousel.js') }}"></script>
 {% endblock %}

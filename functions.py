@@ -41,11 +41,19 @@ from datetime import datetime
 # client['age'] = age
 # print(client)
 # client.to_csv('./transData/client.csv')
+#
+#
+# loan = pd.read_csv('./transData/loan.csv')
+# # account.drop(index = True)
+# print(loan['account_id'].is_unique)
+# ## loan['date'] = pd.to_datetime(loan['date'], format='%y%m%d')
+# # account.to_csv('./transData/account.csv', index = False)
+# trans = pd.read_csv('./transData/transaction.csv')
+import pandas as pd
+from sqlalchemy import create_engine
 
 
-loan = pd.read_csv('./transData/loan.csv')
-# account.drop(index = True)
-print(loan['account_id'].is_unique)
-## loan['date'] = pd.to_datetime(loan['date'], format='%y%m%d')
-# account.to_csv('./transData/account.csv', index = False)
-trans = pd.read_csv('./transData/transaction.csv')
+df = pd.DataFrame(pd.read_csv('./mysqlData/transaction.csv'))
+engine = create_engine("mysql+pymysql://adbfinal:111111@localhost:8889/adb_final", encoding='utf8')
+df.to_sql('transaction', con=engine, if_exists='replace', index=False)
+print("success")

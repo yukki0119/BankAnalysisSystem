@@ -2,7 +2,7 @@ import sys
 
 from neo4j import GraphDatabase
 
-driver = GraphDatabase.driver ("bolt://localhost:7687", auth=("neo4j", "neo4j123456"))
+driver = GraphDatabase.driver("bolt://192.168.1.181:7687", auth=("neo4j", "neo4j123456"))
 
 
 def customer_query(year, month, search_type, account_id):
@@ -122,7 +122,7 @@ def query3(tx, req):
         age_right = sys.maxsize
     print(age_left, age_right, status)
     result = tx.run("MATCH (a:account)-[:made]->(l:loan), (c:client)-[h:hold]->(a) WHERE l.status={status} and "
-                    "h.type=\"OWNER\" and c.age >= {age_left} AND c.age <= {age_right} RETURN COUNT (c) as count", status=status, age_left=age_left, age_right=age_right)
+                    "c.age >= {age_left} AND c.age <= {age_right} RETURN COUNT (c) as count", status=status, age_left=age_left, age_right=age_right)
     res = result.data()
     print(res)
     return res
@@ -154,8 +154,8 @@ def query5(tx, req):
 # 6.Query the number of customers by different region
 def query6(tx, req):
     region = req['region']
-    result = tx.run("MATCH (c:client)- [:BelongTo] -> (d:district), (d) - [:BelongTo] -> (r: region) where r.region={"
-                    "region} return count(c) as count", region=region)
+    result = tx.run ("MATCH (c:client)- [:BelongTo] -> (d:district), (d) - [:BelongTo] -> (r: region) where r.region={"
+                     "region} return count(c) as count", region=region)
     res = result.data()
     print(res)
     return res
@@ -179,3 +179,35 @@ def get_region():
 def get_region_helper(tx):
     result = tx.run ("Match (r:region) return r.region as region")
     return result.data ()
+
+def get_customer_num(age_range):
+    with driver.session () as session:
+        return session.read_transaction (get_customer_num_helper, age_range)
+
+
+def get_customer_num_helper(tx, age_range):
+    age_range = int(age_range)
+    age_left = 0
+    age_right = 0
+    if age_range == 1:
+        age_left = 0
+        age_right = 25
+    if age_range == 2:
+        age_left = 26
+        age_right = 50
+    if age_range == 3:
+        age_left = 51
+        age_right = 75
+    if age_range == 4:
+        age_left = 76
+        age_right = sys.maxsize
+    result = tx.run("MATCH (a:account)-[:made]->(l:loan), (c:client)-[h:hold]->(a) WHERE "
+                    "h.type=\"OWNER\" and c.age >= {age_left} AND c.age <= {age_right} WITH l.status as loan_ability, "
+                    "c RETURN COUNT (c) as count, loan_ability order by loan_ability",
+                    age_left=age_left, age_right=age_right)
+    result = result.data()
+    res_list = []
+    for data in result:
+        res_list.append(data['count'])
+    print(res_list)
+    return  res_list
